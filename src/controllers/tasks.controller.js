@@ -27,28 +27,38 @@ export const findTaskByIdController = async (req, res) => {
   res.send(chosenTask);
 };
 
-export const createTaskController = (req, res) => {
+export const createTaskController = async (req, res) => {
   const task = req.body;
-  const newTask = createTaskService(task);
+
+  if (!task.title || !task.description || !task.deadline) {
+    return res
+      .status(400)
+      .send({ message: 'Por favor preencha todos os campos' });
+  }
+
+  const newTask = await createTaskService(task);
   res.send(newTask);
 };
 
-export const updateTaskController = (req, res) => {
-  const idParam = +req.params.id;
-  const taskEdit = req.body;
-  const updatedTask = updateTaskService(idParam, taskEdit);
-  if (updatedTask === false) {
-    res.status(204).send({ message: 'Tarefa não foi encontrada' });
-  } else {
-    res.send(updatedTask);
+export const updateTaskController = async (req, res) => {
+  const idParam = req.params.id;
+
+  if (!mongoose.Types.ObjectId.isValid(idParam)) {
+    return res.status(400).send({ message: 'ID inválido!' });
   }
+
+  const taskEdit = req.body;
+
+  const updatedTask = await updateTaskService(idParam, taskEdit);
+  res.send(updatedTask);
 };
 
-export const deleteTaskController = (req, res) => {
-  const idParam = +req.params.id;
-  if (deleteTaskService(idParam)) {
-    res.send({ message: 'Tarefa deletada com sucesso!' });
-  } else {
-    res.status(204).send({ message: 'Tarefa não foi encontrada' });
+export const deleteTaskController = async (req, res) => {
+  const idParam = req.params.id;
+
+  if (!mongoose.Types.ObjectId.isValid(idParam)) {
+    return res.status(400).send({ message: 'ID inválido!' });
   }
+  await deleteTaskService(idParam);
+  res.send({ message: 'Tarefa deletada com sucesso!' });
 };

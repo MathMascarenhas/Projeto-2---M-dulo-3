@@ -1,0 +1,29 @@
+{
+  "name": "projeto-2---m-dulo-3",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MathMascarenhas/Projeto-2---M-dulo-3.git"
+  },
+  "author": "Matheus Mascarenhas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MathMascarenhas/Projeto-2---M-dulo-3/issues"
+  },
+  "homepage": "https://github.com/MathMascarenhas/Projeto-2---M-dulo-3#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}

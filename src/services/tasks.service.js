@@ -16,7 +16,7 @@ export const createTaskService = async (newTask) => {
 };
 
 export const updateTaskService = async (id, taskUpdate) => {
-  const editedTask = Task.findByIdAndUpdate(id, taskUpdate);
+  const editedTask = Task.findByIdAndUpdate(id, taskUpdate).setOptions({ returnOriginal: false });
   return editedTask;
 };
 

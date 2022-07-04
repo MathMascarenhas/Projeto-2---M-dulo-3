@@ -9,6 +9,10 @@ export const createTaskService = async (newTask) => {
   return await Task.create(newTask);
 };
 
-export const updateTaskService = async (idParam, taskUpdate) => await Task.findByIdAndUpdate(idParam, taskUpdate).setOptions({ returnOriginal: false });
+export const updateTaskService = async (idParam, taskUpdate) => {
+  return await Task.findByIdAndUpdate(idParam, taskUpdate).setOptions({
+    returnOriginal: false
+  });
+}; 
 
-export const deleteTaskService = async (idParam) => await Task.findByIdAndDelete(idParam);
+export const deleteTaskService = async (idParam) =>  await Task.findByIdAndDelete(idParam);

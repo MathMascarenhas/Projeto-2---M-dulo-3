@@ -12,7 +12,7 @@ import {
 
 router.get('/', findTasksController);
 router.get('/:id', validId, findTaskByIdController);
-router.post('/', validObject,createTaskController);
+router.post('/', validObject, createTaskController);
 router.put('/:id', validId, validObject, updateTaskController);
 router.delete('/:id', validId, deleteTaskController);
 

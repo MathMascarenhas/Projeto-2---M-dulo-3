@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
+import { validId, validObject } from '../middleware/tasks.middleware.js';
 import {
   findTasksController,
   findTaskByIdController,
@@ -9,10 +10,10 @@ import {
   deleteTaskController,
 } from '../controllers/tasks.controller.js';
 
-router.get('/tasks', findTasksController);
-router.get('/task/:id', findTaskByIdController);
-router.post('/create-task', createTaskController);
-router.put('/update-task/:id', updateTaskController);
-router.delete('/delete-task/:id', deleteTaskController);
+router.get('/', findTasksController);
+router.get('/:id', validId, findTaskByIdController);
+router.post('/', validObject,createTaskController);
+router.put('/:id', validId, validObject, updateTaskController);
+router.delete('/:id', validId, deleteTaskController);
 
 export default router;

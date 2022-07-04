@@ -25,7 +25,7 @@ export const findTaskByIdController = async (req, res) => {
 export const createTaskController = async (req, res) => {
   const task = req.body;
   const newTask = await createTaskService(task);
-  res.satus(201).send(newTask);
+  res.status(201).send(newTask);
 };
 
 export const updateTaskController = async (req, res) => {
